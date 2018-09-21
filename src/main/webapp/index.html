@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<div style="max-width: 1240px; padding: 20px; margin: 0 auto;">
+    <h1>Data Generator</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Last age</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+        <script>
+            fetch("api/data/50/1")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    var tbody = document.querySelector("table tbody");
+                    data.forEach(function (person) {
+                        var tr = document.createElement("tr");
+                        ["id", "fName", "lName", "age"].forEach(function (key) {
+                            var td = document.createElement("td");
+                            td.innerText = person[key];
+                            tr.appendChild(td);
+                        });
+
+                        tbody.appendChild(tr);
+                    });
+                });
+        </script>
+    </table>
+</div>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+</html>
