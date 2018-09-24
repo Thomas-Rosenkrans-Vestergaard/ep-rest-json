@@ -5,12 +5,15 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Generator
 {
 
-    private static String[] firstNames = {
+    private static List<String> firstNames = new ArrayList<>(Arrays.asList(
             "Anne",
             "Kirsten",
             "Mette",
@@ -30,10 +33,10 @@ public class Generator
             "Søren",
             "Jan",
             "Christian",
-            "Martin",
-            };
+            "Martin"
+    ));
 
-    private static String[] lastNames = {
+    private static List<String> lastNames = new ArrayList<>(Arrays.asList(
             "Nielsen",
             "Jensen",
             "Hansen",
@@ -43,8 +46,8 @@ public class Generator
             "Larsen",
             "Sørensen",
             "Rasmussen",
-            "Jørgensen",
-            };
+            "Jørgensen"
+    ));
 
     private static Random random = new Random();
 
@@ -67,11 +70,21 @@ public class Generator
 
     private static String randomFirstName()
     {
-        return firstNames[random.nextInt(firstNames.length)];
+        return firstNames.get(random.nextInt(firstNames.size()));
     }
 
     private static String randomLastName()
     {
-        return lastNames[random.nextInt(lastNames.length)];
+        return lastNames.get(random.nextInt(lastNames.size()));
+    }
+
+    public static void addFirstName(String firstName)
+    {
+        firstNames.add(firstName);
+    }
+
+    public static void addLastName(String lastName)
+    {
+        lastNames.add(lastName);
     }
 }

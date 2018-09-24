@@ -7,39 +7,56 @@
 </head>
 <body>
 <div style="max-width: 1240px; padding: 20px; margin: 0 auto;">
-    <h1>Data Generator</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Last age</th>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="row">
+        <h1>Data Generator</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Last age</th>
+            </tr>
+            </thead>
+            <tbody>
 
-        </tbody>
-        <script>
-            fetch("api/data/50/1")
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    var tbody = document.querySelector("table tbody");
-                    data.forEach(function (person) {
-                        var tr = document.createElement("tr");
-                        ["id", "fName", "lName", "age"].forEach(function (key) {
-                            var td = document.createElement("td");
-                            td.innerText = person[key];
-                            tr.appendChild(td);
+            </tbody>
+            <script>
+                fetch("api/data/50/1")
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        var tbody = document.querySelector("table tbody");
+                        data.forEach(function (person) {
+                            var tr = document.createElement("tr");
+                            ["id", "fName", "lName", "age"].forEach(function (key) {
+                                var td = document.createElement("td");
+                                td.innerText = person[key];
+                                tr.appendChild(td);
+                            });
+
+                            tbody.appendChild(tr);
                         });
-
-                        tbody.appendChild(tr);
                     });
-                });
-        </script>
-    </table>
+            </script>
+        </table>
+    </div>
+    <div class="row">
+        <form action="api/data" method="POST">
+            <div class="row input-field">
+                <input type="text" name="firstName" id="firstName">
+                <label for="firstName">First name</label>
+            </div>
+            <div class="row input-field">
+                <input type="text" name="lastName" id="lastName">
+                <label for="lastName">Last name</label>
+            </div>
+            <div class="row input-field">
+                <input type="submit">
+            </div>
+        </form>
+    </div>
 </div>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
